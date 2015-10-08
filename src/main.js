@@ -1,13 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var QuestionA = React.createClass({
+var AddWord = React.createClass({
     render: function() {
         return <section className={this.props.className + " question-a-container"}>Section A</section>;
     }
 });
 
-var QuestionB = React.createClass({
+var Learn = React.createClass({
     render: function() {
         return <section className={this.props.className + " question-b-container"}>Section B</section>;
     }
@@ -15,23 +15,36 @@ var QuestionB = React.createClass({
 
 var Root = React.createClass({
     getInitialState: function() {
-        return { question: 'a' };
+        return {
+            addWord: 'active',
+            learn: 'disabled'
+        };
     },
 
     render: function() {
-        var qAclassName = this.state.question === 'a' ? 'active' : '';
-        var qBclassName = this.state.question === 'b' ? 'active' : '';
+
         return (
-            <div className="question">
-                <QuestionA className={qAclassName} />
-                <QuestionB className={qBclassName} />
-                <div className="question-side-switcher" onClick={this.handleSideChanging}>Change</div>
+            <div>
+                <button onClick={this.handleSideChanging.bind(this, 'addWord')}>Add word</button>
+                <button onClick={this.handleSideChanging.bind(this, 'learn')}>Learn</button>
+
+                <div className="containers">
+                    <AddWord className={this.state.addWord} />
+                    <Learn className={this.state.learn} />
+                    <div className="question-side-switcher" onClick={this.handleSideChanging}>Change</div>
+                </div>
             </div>
             );
     },
 
-    handleSideChanging: function() {
-        this.setState({question: this.state.question === 'a' ? 'b' : 'a' });
+    handleSideChanging: function(show) {
+        if (show === 'addWord') {
+            this.setState({addWord: 'active'});
+            this.setState({learn: 'disabled'});
+        } else {
+            this.setState({addWord: 'disabled'});
+            this.setState({learn: 'active'});
+        }
     }
 });
 
