@@ -1,11 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var AddWord = React.createClass({
-    render: function() {
-        return <section className={this.props.className + " question-a-container"}>Section A</section>;
-    }
-});
+
 
 var Learn = React.createClass({
     render: function() {
@@ -31,7 +27,6 @@ var Root = React.createClass({
                 <div className="containers">
                     <AddWord className={this.state.addWord} />
                     <Learn className={this.state.learn} />
-                    <div className="question-side-switcher" onClick={this.handleSideChanging}>Change</div>
                 </div>
             </div>
             );
