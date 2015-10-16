@@ -1,13 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-
-
-var Learn = React.createClass({
-    render: function() {
-        return <section className={this.props.className + " question-b-container"}>Section B</section>;
-    }
-});
+var AddWord = require('./components/AddWord');
+var Learn = require('./components/Learn');
 
 var Root = React.createClass({
     getInitialState: function() {
@@ -21,12 +16,9 @@ var Root = React.createClass({
 
         return (
             <div>
-                <button onClick={this.handleSideChanging.bind(this, 'addWord')}>Add word</button>
-                <button onClick={this.handleSideChanging.bind(this, 'learn')}>Learn</button>
-
                 <div className="containers">
-                    <AddWord className={this.state.addWord} />
-                    <Learn className={this.state.learn} />
+                    <AddWord  />
+                    <Learn  />
                 </div>
             </div>
             );
@@ -43,4 +35,4 @@ var Root = React.createClass({
     }
 });
 
-ReactDOM.render(<Root />, document.body);
+ReactDOM.render(<Root />, document.getElementById('root'));
